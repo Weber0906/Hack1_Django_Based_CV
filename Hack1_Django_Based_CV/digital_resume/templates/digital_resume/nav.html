@@ -1,0 +1,43 @@
+<div class="navbar">
+    
+            <div class="name">
+                <h1>CV Builder</h1>
+            </div>
+            <div class="login">
+                {{user}}
+                {% if user.is_authenticated %}
+                {% if user.profile %}
+                <br>
+                <li class="login-wrapper"><a href="{% url 'accounts:profile' user.profile.id %}">Profile</a></li>
+            
+                <li class="login-wrapper"><a href="{% url 'accounts:logout' %}?next=/">Logout</a></li>
+            </div>
+
+            <div >
+                    <ul class="links">
+                     <li class="link-wrapper"><a href="{% url 'digital_resume:personal-info-create' %}">Personal Info</a></li>
+                      <li class="link-wrapper"><a href="{% url 'digital_resume:summary-create' %}">Summary</a></li>
+                      <li class="link-wrapper"><a href="{% url 'digital_resume:technical-skill-create' %}">Technical Skills</a></li>
+                      <li class="link-wrapper"><a href="{% url 'digital_resume:technical-project-create' %}">Technical Project</a></li>
+                      <li class="link-wrapper"><a href="{% url 'digital_resume:experience-create' %}">Experience</a></li>
+                      <li class="link-wrapper"><a href="{% url 'digital_resume:education-create' %}">Education</a></li>
+                      <li class="link-wrapper"><a href="{% url 'digital_resume:language-create' %}">Languages</a></li>
+                      <li class="link-wrapper"><a href="{% url 'pdf_builder:preview' %}">Preview CV</a></li>
+                      <li class="link-wrapper"><a href="{% url 'pdf_builder:generate-pdf' %}">Create PDF</a></li>
+                      <!-- Add more navigation items for other forms -->
+                
+                </ul>
+            </div>
+        {% endif %}
+        {% else %}
+        
+        <div class="login">
+                    <li class="login-wrapper"><a href="{% url 'accounts:signup' %}">Sign Up</a></li> <br>
+                    <li class="login-wrapper"><a href="{% url 'accounts:login' %}">Login</a></li>
+        </div>
+
+          
+        {% endif %}
+    
+    
+</div>

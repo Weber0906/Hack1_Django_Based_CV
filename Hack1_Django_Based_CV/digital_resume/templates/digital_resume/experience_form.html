@@ -1,0 +1,17 @@
+{% extends 'digital_resume/base.html' %}
+{%load crispy_forms_tags %} 
+{% block content %}
+    <h2>Experience</h2>
+        <div> 
+             <form method="post" action="{% url 'digital_resume:experience-create' %}">
+                {% csrf_token %}
+                {{ form.management_form }}
+                {%for form_instance in form%}
+        <div>
+            {{ form_instance|crispy}}
+            <!-- {{ form.non_form_errors }} -->
+        </div>
+        {%endfor%}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

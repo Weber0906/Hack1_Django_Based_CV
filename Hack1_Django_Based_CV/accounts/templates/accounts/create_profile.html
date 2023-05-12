@@ -1,0 +1,12 @@
+{% extends 'digital_resume/base.html' %}
+{% block content %}
+<h2>Create Profile</h2>
+<body>
+    <form method="post"> 
+        {%csrf_token%}
+        {{form}}
+        <button type="submit"> Create </button>
+    </form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'digital_resume/base.html' %}
+{% block content %}
+<body>
+    <form method="post"> 
+        {%csrf_token%}
+        {{form}}
+        <button type="submit"> Logout </button>
+    </form>
+</body>
+{% endblock %}

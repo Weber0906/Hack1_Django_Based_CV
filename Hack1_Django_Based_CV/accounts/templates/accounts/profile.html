@@ -1,0 +1,71 @@
+{% extends 'digital_resume/base.html' %}
+{% block content %}
+
+<div class="profile-container">
+    <div class="p-info">
+    <h4>{{ user.profile.personal_info.first_name }} {{ user.profile.personal_info.last_name }}</h4>
+    <p>Job Title: {{ user.profile.personal_info.job_title }}</p>
+    <p>City: {{ user.profile.personal_info.city }}</p>
+    <p>Phone: {{ user.profile.personal_info.phone_number }}</p>
+    <p>Email: {{ user.profile.personal_info.email }}</p>
+    <p>Github: <a href="{{ user.profile.personal_info.github_url }}">{{ user.profile.personal_info.github_url }}</a></p>
+    <p>LinkedIn: <a href="{{ user.profile.personal_info.linkedin_url }}">{{ user.profile.personal_info.linkedin_url }}</a></p>
+    <p>Portfolio: <a href="{{ user.profile.personal_info.portfolio_url }}">{{ user.profile.personal_info.portfolio_url }}</a></p>
+    </div>
+    
+    <div class="summary">
+        <h4>Summary</h4>
+        <p>{{ user.profile.summary.summary_text }}</p>
+    </div>
+    
+    <div class="tech-skills">
+        <h4>Technical Skills</h4>
+        <ul>
+            {%for skill in user.profile.tech_skills.all%}
+                <li>{{skill}}</li>
+            {%endfor%}
+        </ul>
+    </div>
+    
+    <div class="tech-projects">
+        <h4>Technical Projects</h4>
+    {% for project in user.profile.tech_projects.all %}
+        <h3>{{project.project_name}}</h3>
+        <p>Github: <a href="{{ project.github_url }}">{{ project.github_url }}</a></p>
+        <p>Demo: <a href="{{ project.demo_url }}">{{ project.demo_url }}</a></p>
+        <p>{{ project.project_description }}</p>
+    {% endfor %}
+    </div>
+    
+    <div class="experience">
+        <h4>Experience</h4>
+    {% for experience in user.profile.experience.all %}
+        <h3>{{ experience.job_title }}</h3>
+        <p>Company: {{ experience.company_name }}</p>
+        <p>Start Date: {{ experience.start_date }}</p>
+        <p>End Date: {{ experience.end_date }}</p>
+        <p>{{ experience.experience_description }}</p>
+    {% endfor %}
+    </div>
+    
+    <div class="education">
+        <h4>Education</h4>
+    {% for education in user.profile.education.all %}
+        <h3>{{ education.program_name }}</h3>
+        <p>Institution: {{ education.institution_name }}</p>
+        <p>Start Date: {{ education.start_date }}</p>
+        <p>End Date: {{ education.end_date }}</p>
+    {% endfor %}
+    </div>
+    
+    <div class="language">
+        <h4>Languages</h4>
+    <ul>
+        {% for language in user.profile.languages.all %}
+            <li>{{ language.language_name }} - {{ language.proficiency_level }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    
+</div>
+{% endblock %}
